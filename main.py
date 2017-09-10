@@ -14,9 +14,8 @@ DISABLE_WEB_PAGE_PREVIEW = 'true'
 
 with open(path.join(PWD, 'token.txt'), 'w+') as f:
     token = f.read().replace('\n', '')
-    if token:
+    if not token:
         token = input('Please input your token: ')
-    else:
         f.write(token)
 
 SEND_MESSAGE_URL = 'https://api.telegram.org/bot{}/sendMessage'.format(token)
@@ -53,9 +52,10 @@ def get_sent_post_id_list():
         return []
 
     with open(SENT_JSON_FILE_PATH, 'r') as f:
-        sent_post_id_list = json.loads(f.read())
+        file_data = f.read()
 
-    return sent_post_id_list  # post that have already send
+    # post that have already send
+    return [] if not file_data else json.loads(file_data)
 
 
 def send_popular_post(post_title, post_id):
