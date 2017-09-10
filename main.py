@@ -1,7 +1,7 @@
 import json
 import requests
 
-from os import path, system
+from os import path
 
 # os settings
 PWD = path.dirname(path.abspath(__file__))
@@ -14,9 +14,12 @@ DISABLE_WEB_PAGE_PREVIEW = 'true'
 
 if not path.exists(TOKEN_FILE_PATH):
     token = input('Please input your token: ')
-else:
-    with open(path.join(PWD, 'token.txt'), 'r') as f:
+
+with open(path.join(PWD, 'token.txt'), 'w+') as f:
+    if token:
         token = f.read().replace('\n', '')
+    else:
+        f.write(token)
 
 SEND_MESSAGE_URL = 'https://api.telegram.org/bot{}/sendMessage'.format(token)
 
@@ -47,7 +50,8 @@ def get_popular_post_list(min_like_count=3000):
 
 def get_sent_post_id_list():
     if not path.exists(SENT_JSON_FILE_PATH):
-        system('touch {}'.format(SENT_JSON_FILE_PATH))
+        with open(SENT_JSON_FILE_PATH, 'w+') as f:
+            pass
         return []
 
     with open(SENT_JSON_FILE_PATH, 'r') as f:
