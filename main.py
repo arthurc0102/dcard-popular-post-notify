@@ -6,14 +6,19 @@ from os import path, system
 # os settings
 PWD = path.dirname(path.abspath(__file__))
 SENT_JSON_FILE_PATH = path.join(PWD, 'sent.json')
+TOKEN_FILE_PATH = path.join(PWD, 'token.txt')
 
 # telegram settings
 CHAR_ID = '-1001129684762'
 DISABLE_WEB_PAGE_PREVIEW = 'true'
-with open(path.join(PWD, 'token.txt')) as f:
-    SEND_MESSAGE_URL = 'https://api.telegram.org/bot{}/sendMessage'.format(
-        f.read().replace('\n', '')
-    )
+
+if not path.exists(TOKEN_FILE_PATH):
+    token = input('Please input your token: ')
+else:
+    with open(path.join(PWD, 'token.txt'), 'r') as f:
+        token = f.read().replace('\n', '')
+
+SEND_MESSAGE_URL = 'https://api.telegram.org/bot{}/sendMessage'.format(token)
 
 # dcard settings
 TARGET_URL = 'https://www.dcard.tw/_api/posts'
