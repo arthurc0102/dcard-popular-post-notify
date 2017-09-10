@@ -95,5 +95,5 @@ if __name__ == '__main__':
         error = traceback.format_exc()
         file_name = 'error-{}.txt'.format(
             datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
-        with open(path.join(PWD, file_name), 'w+') as f:
+        with open(path.join(PWD, 'logs', file_name), 'w+') as f:
             f.write(error)
