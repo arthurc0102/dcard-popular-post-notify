@@ -13,10 +13,10 @@ CHAR_ID = '-1001129684762'
 DISABLE_WEB_PAGE_PREVIEW = 'true'
 
 with open(path.join(PWD, 'token.txt'), 'w+') as f:
-    if not path.exists(TOKEN_FILE_PATH):
-        token = f.read().replace('\n', '')
-    else:
+    token = f.read().replace('\n', '')
+    if token:
         token = input('Please input your token: ')
+    else:
         f.write(token)
 
 SEND_MESSAGE_URL = 'https://api.telegram.org/bot{}/sendMessage'.format(token)
