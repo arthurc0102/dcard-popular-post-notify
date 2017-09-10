@@ -84,4 +84,14 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except Exception as e:
+        import traceback
+        from datetime import datetime
+
+        error = traceback.format_exc()
+        file_name = 'error-{}.txt'.format(
+            datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
+        with open(path.join(PWD, file_name), 'w+') as f:
+            f.write(error)
