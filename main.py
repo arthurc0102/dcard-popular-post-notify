@@ -35,6 +35,7 @@ def get_popular_post_list(min_like_count=3000):
             params.update({'before': before})
 
         posts = requests.get(TARGET_URL, params).json()
+        posts = sorted(posts, key=lambda x: x['likeCount'], reverse=True)
         for post in posts:
             if post['likeCount'] < min_like_count:
                 break
