@@ -1,7 +1,7 @@
 import json
 import requests
 
-from os import path
+from os import path, makedirs
 
 # os settings
 PWD = path.dirname(path.abspath(__file__))
@@ -94,8 +94,14 @@ if __name__ == '__main__':
         import traceback
         from datetime import datetime
 
+        if not path.exists(path.join(PWD, 'logs')):
+            makedirs(path.join(PWD, 'logs'))
+
         error = traceback.format_exc()
-        file_name = 'error-{}.txt'.format(
-            datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
+        f = '%Y-%m-%d-%H-%M-%S'  # date format
+        file_name = 'error-{}.txt'.format(datetime.now().strftime(f))
+
         with open(path.join(PWD, 'logs', file_name), 'w+') as f:
             f.write(error)
+
+        print(error)
