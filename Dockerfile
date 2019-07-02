@@ -21,4 +21,6 @@ RUN apk add --no-cache ca-certificates
 
 COPY --from=build /app.out .
 
-CMD ["tail", "-f", "/dev/null"]
+RUN echo "0       *       *       *       *       /app/app.out" >> /etc/crontabs/root
+
+CMD [ "crond", "-f" ]
