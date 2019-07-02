@@ -17,6 +17,8 @@ FROM alpine:3.8
 
 WORKDIR /app
 
+RUN apk add --no-cache ca-certificates
+
 COPY --from=build /app.out .
 
 CMD ["tail", "-f", "/dev/null"]
