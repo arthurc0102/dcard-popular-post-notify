@@ -19,4 +19,4 @@ WORKDIR /app
 
 COPY --from=build /app.out .
 
-CMD ["/app/app.out"]
+CMD ["tail", "-f", "/dev/null"]
