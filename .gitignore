@@ -1,3 +1,10 @@
+# Editor config
+.idea/
+.vscode/
+
+# Config file
+config.yaml
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
