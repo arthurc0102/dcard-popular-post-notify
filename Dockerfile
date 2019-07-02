@@ -13,7 +13,7 @@ RUN go build -o /app.out .
 
 # ==============================
 
-FROM scratch
+FROM alpine:3.8
 
 WORKDIR /app
 
