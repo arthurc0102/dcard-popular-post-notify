@@ -15,11 +15,11 @@ import (
 
 // SendToTGChannel send post to telegram channel
 func SendToTGChannel(posts []models.Post) []error {
-	postURL := viper.GetString("dcard.postURL")
-	chatID := viper.GetString("telegram.chatID")
-	disableWebPagePreview := viper.GetString("telegram.disableWebPagePreview")
+	postURL := viper.GetString("dcard.post_url")
+	chatID := viper.GetString("telegram.chat_id")
+	disableWebPagePreview := viper.GetString("telegram.disable_web_page_preview")
 	sendMessageURL := fmt.Sprintf(
-		viper.GetString("telegram.sendMessageURL"),
+		viper.GetString("telegram.send_message_url"),
 		viper.GetString("telegram.token"),
 	)
 

@@ -17,7 +17,7 @@ func GetPopularPosts(lessLikeCount int) ([]models.Post, []error) {
 	var targetPosts []models.Post
 
 	before := -1
-	postsURL := viper.GetString("dcard.postsURL")
+	postsURL := viper.GetString("dcard.posts_url")
 
 	for {
 		var posts []models.Post

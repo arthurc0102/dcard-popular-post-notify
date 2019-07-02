@@ -3,9 +3,8 @@ package command
 import (
 	"os"
 
-	"github.com/arthurc0102/dcard-popular-post-notify/app/db"
-
 	"github.com/arthurc0102/dcard-popular-post-notify/app"
+	"github.com/arthurc0102/dcard-popular-post-notify/app/db"
 	"github.com/arthurc0102/dcard-popular-post-notify/app/services"
 	"github.com/arthurc0102/dcard-popular-post-notify/helper"
 	"github.com/spf13/cobra"
@@ -17,7 +16,7 @@ var cmd = &cobra.Command{
 	PersistentPreRunE: helper.InitViper,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		// Load config
-		lessLikeCount := viper.GetInt("lessLikeCount")
+		lessLikeCount := viper.GetInt("less_like_count")
 		dbConfig := viper.GetString("db.url")
 		dbMigrate := viper.GetBool("db.migrate")
 
