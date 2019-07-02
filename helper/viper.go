@@ -20,16 +20,17 @@ func InitViper(cmd *cobra.Command, args []string) error {
 	if configFile != "" {
 		viper.SetConfigFile(configFile)
 	} else {
-		homeDirectory, err := HomeDirectory()
-		if err != nil {
-			return err
+		userConfig := ""
+
+		if homeDirectory, err := HomeDirectory(); err == nil {
+			userConfig = filepath.Join(homeDirectory, "."+app.Name)
 		}
 
 		viper.SetConfigName("config")
 		viper.SetConfigType("yaml")
 
 		viper.AddConfigPath(".")
-		viper.AddConfigPath(filepath.Join(homeDirectory, "."+app.Name))
+		viper.AddConfigPath(userConfig)
 		viper.AddConfigPath(filepath.Join("/", "etc", app.Name))
 	}
 
