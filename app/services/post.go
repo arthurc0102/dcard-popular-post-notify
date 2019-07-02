@@ -36,11 +36,11 @@ func GetPopularPosts(lessLikeCount int) ([]models.Post, []error) {
 			Query(query).
 			EndStruct(&posts)
 
-		helper.Log("(services/post) Send request to:", res.Request.URL)
-
 		if errs != nil {
 			return nil, errs
 		}
+
+		helper.Log("(services/post) Send request to:", res.Request.URL)
 
 		if AllPostsNotInTarget(posts, lessLikeCount) {
 			break
