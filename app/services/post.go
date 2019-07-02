@@ -80,7 +80,7 @@ func FilterTargetPosts(posts []models.Post, lessLikeCount int) (targetPosts []mo
 	return
 }
 
-// FilterUnsentPosts
+// FilterUnsentPosts return posts that haven't sent
 func FilterUnsentPosts(posts []models.Post) (unsetPosts []models.Post) {
 	sentPosts := make(map[int]string)
 
